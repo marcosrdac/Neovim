@@ -1,11 +1,12 @@
 " --- automation --- "
 " editing from where you were
 au BufReadPost * call EditAtLastPosition()
-" set filetype if already not set
-autocmd BufRead * AutoSetFiletype
+" set filetype if not already set
+autocmd BufNewFile,BufRead * AutoSetFiletype
 " deletes trailing whitespace on save
-autocmd BufWritePre * RmTrailingSpaces
-
+"autocmd BufWritePre * RmTrailingSpaces
+" saving and loading fold views
+"DONT KNOW
 "" fold based on indent level and manual choices
 ""augroup vimrc
 ""  au BufReadPre * setlocal foldmethod=indent

@@ -10,25 +10,48 @@ endif
 
 " --- plugin management --- "
 call plug#begin(g:vimpath.'/plugged')
-    " essential
+    " navigation
     Plug 'unblevable/quick-scope'          " find that word
-    Plug 'dense-analysis/ale'              " asynchronous syntax checking
-    Plug 'christoomey/vim-tmux-navigator'  " tmux navigation
-    Plug 'Raimondi/delimitMate'            " closing brackets
-    Plug 'tpope/vim-surround'              " changing brackets
-    Plug 'ctrlpvim/ctrlp.vim'              " file fuzyfinder
-    Plug 'scrooloose/nerdcommenter'        " (un)comments text
+    Plug 'christoomey/vim-tmux-navigator'  " tmux navigation integration
+
+    " viewing colors
     Plug 'norcalli/nvim-colorizer.lua'     " colors become colored
+    "Plug 'rrethy/vim-hexokinase',
+    "    \ { 'do': 'make hexokinase' }
+
+    " syntax checkers
+    Plug 'dense-analysis/ale'            " asynchronous syntax checking
+
+    " grammar checkers (backend to languagetool, 'pacman -S' it)
+    if has('nvim')
+        Plug 'vigoux/LanguageTool.nvim'  " asynchronous grammar checker
+    else
+        Plug 'dpelle/vim-LanguageTool'   " grammar checker
+    endif
+
+    " visual mode with ease
     Plug 'terryma/vim-expand-region'       " expanding selection
+
     " focused writing
     Plug 'junegunn/goyo.vim'       " center text
     Plug 'junegunn/limelight.vim'  " focused writing
-    " NERDTree
+
+    " File managing
+    "" NERDTree
     Plug 'scrooloose/nerdtree'                      " file system explorer
     Plug 'Xuyuanp/nerdtree-git-plugin'              " NERDTree git marks
-    Plug 'ryanoasis/vim-devicons'                   " file icons on NERDTree
+    Plug 'ryanoasis/vim-devicons'                   " NERDTree file icons
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " highlights filetypes
-    " deoplete (completion)
+    "" ctrlP
+    Plug 'ctrlpvim/ctrlp.vim'                       " file fuzyfinder
+
+    " easy-writting
+    "" bracketting
+    Plug 'jiangmiao/auto-pairs'            " closing brackets
+    Plug 'tpope/vim-surround'              " changing brackets
+    "" commenting"
+    Plug 'scrooloose/nerdcommenter'        " (un)comments text
+    "" deoplete (auto-completion)
     if has('nvim')
         Plug 'Shougo/deoplete.nvim',
             \ { 'do': ':UpdateRemotePlugins' }
@@ -37,6 +60,9 @@ call plug#begin(g:vimpath.'/plugged')
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
+    "" De"
+    Plug 'zchee/deoplete-jedi'     " deoplete python source
+    "" TabNine deoplete: general completions every filetype
     if has('win32') || has('win64')
         Plug 'tbodt/deoplete-tabnine',
             \ { 'do': 'powershell.exe .\install.ps1' }
@@ -44,12 +70,12 @@ call plug#begin(g:vimpath.'/plugged')
         Plug 'tbodt/deoplete-tabnine',
             \ { 'do': './install.sh' }
     endif
-    Plug 'zchee/deoplete-jedi'     " deoplete python source
-
     " HTML
     Plug 'mattn/emmet-vim'  " easy html typing
 
-    Plug 'VebbNix/lf-vim'   " lfrc syntax and highlighting
+    " correct syntax highlighting for different filetypes
+    Plug 'VebbNix/lf-vim'                   " lfrc
+    Plug 'drmingdrmer/vim-syntax-markdown'  " markdown with latex
 call plug#end()
 
 
@@ -82,6 +108,7 @@ set wildmenu
 set wildmode=list:longest,full
 " Enable folding
 set foldmethod=indent
+set foldcolumn=0
 set foldlevel=99
 " using case insensitive on searches (not good...)
 "set ic
@@ -179,10 +206,10 @@ vnoremap F<leader><leader> <Esc>?<++><Enter>:noh<CR>"_c4l
 nnoremap F<leader><leader> <Esc>?<++><Enter>:noh<CR>"_c4l
 
 " -- date stuff -- "
-inoremap ;df <++><Esc>:r !date '+\%Y\%m\%d\%H\%M\%S'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
-inoremap ;dl <++><Esc>:r !date '+[\%Y\%m\%d\%H\%M\%S+-<++>]'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa<Space><++><Esc>2?<++><Enter>"_c4l
-inoremap ;d <++><Esc>:r !date '+\%Y\%m\%d'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
-inoremap ;dc <++><Esc>:r !date '+\%d/\%m/\%Y'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
+"inoremap ;df <++><Esc>:r !date '+\%Y\%m\%d\%H\%M\%S'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
+"inoremap ;dl <++><Esc>:r !date '+[\%Y\%m\%d\%H\%M\%S+-<++>]'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa<Space><++><Esc>2?<++><Enter>"_c4l
+"inoremap ;d <++><Esc>:r !date '+\%Y\%m\%d'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
+"inoremap ;dc <++><Esc>:r !date '+\%d/\%m/\%Y'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
 
 " goyo plugin
 "   center writing

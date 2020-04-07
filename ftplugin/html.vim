@@ -1,5 +1,5 @@
 " Run script on python3
-nnoremap <silent> <F5> :!google-chrome % &<CR>
+nnoremap <silent> <F5> :!$BROWSER % &<CR>
 
 " Turning a hard TAB into 2 colums
 set tabstop=2

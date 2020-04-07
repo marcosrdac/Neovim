@@ -1,7 +1,12 @@
 " quick-scope on key-press
 "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary   ctermfg=5 cterm=underline guifg=5 gui=underline
-highlight QuickScopeSecondary ctermfg=6 cterm=underline guifg=6 gui=underline
+if has('nvim')
+    highlight QuickScopePrimary   ctermfg=5 cterm=underline guifg=5 gui=underline
+    highlight QuickScopeSecondary ctermfg=6 cterm=underline guifg=6 gui=underline
+else
+    highlight QuickScopePrimary   ctermfg=5 cterm=underline gui=underline
+    highlight QuickScopeSecondary ctermfg=6 cterm=underline gui=underline
+endif
 
 
 " NERDTree
@@ -20,6 +25,8 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 let g:ctrlp_user_command = ['.git/',
             \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+" languagetool
+let g:languagetool_lang = 'en'
 
 " ALE
 " Disable auto-detection of virtualenvironments
@@ -49,7 +56,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_completion_start_length = 0
 let g:deoplete#enable_camel_case = 1
 " setting a little delay for windows to appear
-call deoplete#custom#option('auto_complete_delay', 50)
+"call deoplete#custom#option('auto_complete_delay', 50)
 
 
 " Goyo / Limelight
@@ -64,3 +71,8 @@ let g:tmux_navigator_no_mappings = 0
 
 " delimitMate
 let delimitMate_expand_cr = 1
+
+
+" nvim lua colorizer
+"set termguicolors
+"lua require'colorizer'.setup()

@@ -76,6 +76,7 @@ call plug#begin(g:vimpath.'/plugged')
     " correct syntax highlighting for different filetypes
     Plug 'VebbNix/lf-vim'                   " lfrc
     Plug 'drmingdrmer/vim-syntax-markdown'  " markdown with latex
+    Plug 'dart-lang/dart-vim-plugin'        " dart syntax highlighting
 call plug#end()
 
 

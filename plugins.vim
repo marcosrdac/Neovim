@@ -8,6 +8,11 @@ else
     highlight QuickScopeSecondary ctermfg=6 cterm=underline gui=underline
 endif
 
+" VimWiki
+let g:vimwiki_list = [{'path': '~/dox/nbk',
+                      \ 'syntax': 'markdown',
+                      \ 'ext': '.md'}]
+
 
 " NERDTree
 "   ignoring node modules
@@ -33,10 +38,10 @@ let g:languagetool_lang = 'en'
 "let g:ale_virtualenv_dir_names = [expand('$VIRTUAL_ENV')]
 " Environment variable ${VIRTUAL_ENV} is always used
 " pylint has the errors
-" Check Python files with flake8 and pylint.
-let b:ale_linters = ['flake8']  " , 'pylint']
-" Fix Python files with autopep8 and yapf.
-let b:ale_fixers = ['autopep8', 'yapf']
+"" Check Python files with flake8 and pylint.
+"let b:ale_linters = ['flake8']  " , 'pylint']
+"" Fix Python files with autopep8 and yapf.
+"let b:ale_fixers = ['autopep8', 'yapf']
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
 " take a look at this site

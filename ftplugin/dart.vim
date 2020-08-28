@@ -1,5 +1,5 @@
 " Run script
-"nnoremap <silent> <F5> :
+nnoremap <silent> <F5> :FlutterRun -d chrome<CR>
 
 " align the new line indent with the previous line
 set autoindent

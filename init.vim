@@ -1,10 +1,13 @@
-" nvimrc (neovim configuration file)
+" init.vim (neovim configuration file)
 
 " --- setting vim path --- "
 if has('nvim')
     let g:vimpath=expand('$XDG_CONFIG_HOME/nvim')
-else
+else                                        
     let g:vimpath=expand('$XDG_CONFIG_HOME/vim')
+    set nocompatible
+    filetype plugin on
+    syntax on
 endif
 
 
@@ -13,6 +16,9 @@ call plug#begin(g:vimpath.'/plugged')
     " navigation
     Plug 'unblevable/quick-scope'          " find that word
     Plug 'christoomey/vim-tmux-navigator'  " tmux navigation integration
+
+    " vimwiki
+    Plug 'vimwiki/vimwiki'
 
     " viewing colors
     Plug 'norcalli/nvim-colorizer.lua'     " colors become colored
@@ -28,9 +34,6 @@ call plug#begin(g:vimpath.'/plugged')
     else
         Plug 'dpelle/vim-LanguageTool'   " grammar checker
     endif
-
-    " visual mode with ease
-    Plug 'terryma/vim-expand-region'       " expanding selection
 
     " focused writing
     Plug 'junegunn/goyo.vim'       " center text
@@ -49,7 +52,8 @@ call plug#begin(g:vimpath.'/plugged')
     "" bracketting
     Plug 'jiangmiao/auto-pairs'            " closing brackets
     Plug 'tpope/vim-surround'              " changing brackets
-    "" commenting"
+    Plug 'tpope/vim-repeat'                " needed to . with vim-surround
+    "" commenting
     Plug 'scrooloose/nerdcommenter'        " (un)comments text
     "" deoplete (auto-completion)
     if has('nvim')
@@ -77,6 +81,11 @@ call plug#begin(g:vimpath.'/plugged')
     Plug 'VebbNix/lf-vim'                   " lfrc
     Plug 'drmingdrmer/vim-syntax-markdown'  " markdown with latex
     Plug 'dart-lang/dart-vim-plugin'        " dart syntax highlighting
+    Plug 'thosakwe/vim-flutter'             " flutter tools
+    Plug 'JuliaEditorSupport/julia-vim'     " julia syntax highlighting
+    
+    Plug 'tshirtman/vim-cython'             " cython filetype and syntax
+
 call plug#end()
 
 
@@ -155,10 +164,6 @@ map <space>o :CtrlP<CR>
 "nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
 "nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 
-" vim-eexpand-region
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
-
 " -- bracketing -- "
 "inoremap ( ()<++><Esc>4hi
 "inoremap ( ()<++><C-o>4h
@@ -209,9 +214,9 @@ nnoremap F<leader><leader> <Esc>?<++><Enter>:noh<CR>"_c4l
 " -- date stuff -- "
 "inoremap ;df <++><Esc>:r !date '+\%Y\%m\%d\%H\%M\%S'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
 "inoremap ;dl <++><Esc>:r !date '+[\%Y\%m\%d\%H\%M\%S+-<++>]'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa<Space><++><Esc>2?<++><Enter>"_c4l
-"inoremap ;d <++><Esc>:r !date '+\%Y\%m\%d'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
+inoremap ;d <++><Esc>:r !date '+\%Y\%m\%d'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
 "inoremap ;dc <++><Esc>:r !date '+\%d/\%m/\%Y'<Enter>0v$h"dd"_dd?<++><Enter>v3l"dpa
 
 " goyo plugin
 "   center writing
-map <leader>c :Goyo \| set linebreak<CR>
+map <silent> <leader>c :Goyo \| set linebreak<CR>

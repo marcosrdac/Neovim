@@ -1,10 +1,5 @@
 " Run script on python3
-nnoremap <silent> <F5> :!python3 %<CR>
-
-" Check Python files with flake8 and pylint.
-let b:ale_linters = ['flake8']  " , 'pylint']
-" Fix Python files with autopep8 and yapf.
-let b:ale_fixers = ['autopep8', 'yapf']
+nnoremap <silent> <F5> :!julia %<CR>
 
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
@@ -35,4 +30,4 @@ set shiftwidth=4
 set shiftround
 
 
-inoremap #! #!/usr/bin/env python3<enter># -*- coding: utf-8 -*-<enter><enter>
+inoremap #! #!/usr/bin/env julia<enter><enter>

@@ -8,10 +8,35 @@ else
     highlight QuickScopeSecondary ctermfg=6 cterm=underline gui=underline
 endif
 
+let g:DOCUMENTS = system("echo -n ${XDG_DOCUMENTS_DIR:-'$HOME/Documents'}")
+
 " VimWiki
-let g:vimwiki_list = [{'path': '~/dox/nbk',
-                      \ 'syntax': 'markdown',
-                      \ 'ext': '.md'}]
+let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                          \ '.gpg': 'markdown',}
+let vimwiki_nested_syntaxes = {'shell': 'sh', 'sh': 'sh', 'bash': 'sh',
+                             \ 'python': 'python', 'julia': 'julia',
+                             \ 'c': 'c', 'c++': 'cpp', 'fortran': 'fortran'}
+
+let wiki_1 = {}
+let wiki_1.path = g:DOCUMENTS
+let wiki_1.diary_rel_path = 'psn/log/jrn'
+let wiki_1.diary_index = 'index'
+let wiki_1.diary_header = 'Journal'
+let wiki_1.ext = '.md'
+let wiki_1.syntax = 'markdown'
+let wiki_1.nested_syntaxes = vimwiki_nested_syntaxes
+let wiki_1.auto_diary_index = 1
+
+let g:vimwiki_list = [wiki_1]
+
+
+" vim-calendar
+let g:calendar_options = 'nonu nornu'
+
+" vim-gnupg
+let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.md\)\='
+let g:GPGDefaultRecipients = [expand('$PUBKEYID')]
+"let g:GPGPossibleRecipients=["me ".expand('$PERSONAL_MAIL'),]
 
 
 " NERDTree

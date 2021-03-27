@@ -2,9 +2,9 @@
 
 " --- setting vim path --- "
 if has('nvim')
-    let g:vimpath=expand('$XDG_CONFIG_HOME/nvim')
-else                                        
-    let g:vimpath=expand('$XDG_CONFIG_HOME/vim')
+    let g:vimpath = expand('$XDG_CONFIG_HOME/nvim')
+else                                          
+    let g:vimpath = expand('$XDG_CONFIG_HOME/vim')
     set nocompatible
     filetype plugin on
     syntax on
@@ -17,8 +17,13 @@ call plug#begin(g:vimpath.'/plugged')
     Plug 'unblevable/quick-scope'          " find that word
     Plug 'christoomey/vim-tmux-navigator'  " tmux navigation integration
 
+    " vim-gnupg
+    Plug 'jamessan/vim-gnupg'
+
     " vimwiki
     Plug 'vimwiki/vimwiki'
+    " calendar-vim integration
+    Plug 'mattn/calendar-vim'
 
     " viewing colors
     Plug 'norcalli/nvim-colorizer.lua'     " colors become colored
@@ -28,12 +33,12 @@ call plug#begin(g:vimpath.'/plugged')
     " syntax checkers
     Plug 'dense-analysis/ale'            " asynchronous syntax checking
 
-    " grammar checkers (backend to languagetool, 'pacman -S' it)
-    if has('nvim')
-        Plug 'vigoux/LanguageTool.nvim'  " asynchronous grammar checker
-    else
-        Plug 'dpelle/vim-LanguageTool'   " grammar checker
-    endif
+    "" grammar checkers (backend to languagetool, 'pacman -S' it)
+    "if has('nvim')
+    "    Plug 'vigoux/LanguageTool.nvim'  " asynchronous grammar checker
+    "else
+    "    Plug 'dpelle/vim-LanguageTool'   " grammar checker
+    "endif
 
     " focused writing
     Plug 'junegunn/goyo.vim'       " center text
@@ -64,7 +69,7 @@ call plug#begin(g:vimpath.'/plugged')
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
-    "" De"
+    "" Deoplete
     Plug 'zchee/deoplete-jedi'     " deoplete python source
     "" TabNine deoplete: general completions every filetype
     if has('win32') || has('win64')
@@ -111,6 +116,8 @@ set splitbelow splitright
 set number relativenumber
 " highlighting searches
 set hlsearch
+" colors for ctrl+n/p (terminal colors)
+"hi PmenuSel ctermfg=5 ctermbg=8
 " not redrawing screen while running macros
 set lazyredraw
 " tab completion in command line
@@ -194,6 +201,7 @@ nmap <F2> :ALEFix<CR>
 imap <F2> <C-o>:ALEFix<CR>
 
 " mappings
+nnoremap <BS> :q<CR>
 nnoremap <C-\> :set number!<CR>
 map <F7> :setlocal spell! spelllang=pt-BR,en_us<CR>
 map <F8> :set hlsearch!<CR>

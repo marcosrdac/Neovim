@@ -1,6 +1,6 @@
 " PT
 abbreviate pq porque
-abbreviate pqê porquê
+abbreviate pqe porquê
 abbreviate Pq Por que
 abbreviate vc você
 abbreviate Vc Você

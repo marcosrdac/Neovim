@@ -33,12 +33,12 @@ call plug#begin(g:vimpath.'/plugged')
     " syntax checkers
     Plug 'dense-analysis/ale'            " asynchronous syntax checking
 
-    "" grammar checkers (backend to languagetool, 'pacman -S' it)
-    "if has('nvim')
-    "    Plug 'vigoux/LanguageTool.nvim'  " asynchronous grammar checker
-    "else
-    "    Plug 'dpelle/vim-LanguageTool'   " grammar checker
-    "endif
+    " grammar checkers (backends to languagetool, pacman install it)
+    if has('nvim')
+        Plug 'vigoux/LanguageTool.nvim'  " asynchronous grammar checker
+    else
+        Plug 'dpelle/vim-LanguageTool'   " grammar checker
+    endif
 
     " focused writing
     Plug 'junegunn/goyo.vim'       " center text

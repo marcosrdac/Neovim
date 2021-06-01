@@ -1,5 +1,11 @@
-" Run script on python3
-nnoremap <silent> <F5> :!$BROWSER % &<CR>
+" both markdown and html use this file
+if (&filetype == 'html')
+  " Open in browser
+  nnoremap <silent> <F5> :!$BROWSER % &<CR>
+else
+  " Run makefile
+  nnoremap <silent> <F5> :!make<CR>
+endif
 
 " Turning a hard TAB into 2 colums
 set tabstop=2

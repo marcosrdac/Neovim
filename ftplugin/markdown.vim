@@ -1,5 +1,8 @@
-" Run script on python3
-nnoremap <silent> <F5> :!pandoc % \| $BROWSER<CR>
+" Run make
+"nnoremap <silent> <F5> :!pandoc % \| $BROWSER<CR>
+"nnoremap <silent> <F5> :!make
+"nnoremap <silent> <F5> :!make
+nnoremap <silent> <F5> :silent exec "!make"<CR>
 
 " align the new line indent with the previous line
 set autoindent
